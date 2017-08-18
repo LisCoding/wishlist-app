@@ -1,0 +1,25 @@
+h1 {
+  color: purple;
+}
+
+input {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+form {
+  font-size: 20px;
+}
+table {
+  border: 2px solid blue;
+
+}
+th, td {
+  padding: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+h3 {
+  color: green;
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% load static %}
+    <!-- The line above tells Django to be ready to listen for static files -->
+    <link rel="stylesheet" href="{% static 'test_app/css/style.css' %}" media="screen" title="no title"  charset="utf-8">
+  </head>
+  <body>
+    <div class="header">
+      <a href="/dashboard">Home</a>
+      <a href="#">Logout</a>
+    </div>
+    <h2>Create a New Wish List Item</h2>
+    <form class="" action="new/items" method="post">
+      {% csrf_token %}
+      <label for="">Item/Product</label>
+      <input type="text" name="item" value="">
+      <input type="submit" name="" value="Add">
+    </form>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  {% load static %}
+  <!-- The line above tells Django to be ready to listen for static files -->
+  <link rel="stylesheet" href="{% static 'test_app/css/style.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+  {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+  <div class="content">
+    <h1>Welcome!</h1>
+    <div class="registration">
+      <h1>Register</h1>
+      <h3>All fiels are required</h3>
+      <form class="" action="/create" method="post">
+        {% csrf_token %}
+        Firt Name<input type="text" name="f_name" value="">
+        Last Name<input type="text" name="l_name" value="">
+        Email<input type="text" name="email" value="">
+        <p>Password has to be a least 8 characters</p>
+        Password<input type="password" name="pwd" value="">
+        Confirm PW<input type="password" name="confi_pwd" value="">
+        Date Hired<input type="date" name="date" value="">
+        <input type="submit" name="" value="Register">
+      </form>
+    </div>
+    <div class="login">
+      <h1>Login</h1>
+      <form class="" action="/authentification" method="post">
+        {% csrf_token %}
+        Email<input type="text" name="email" value="">
+        Password<input type="password" name="pwd" value="">
+        <input type="submit" name="" value="Login in">
+      </form>
+    </div>
+  </div>
+</body>
+</html>

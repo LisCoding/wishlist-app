@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% load static %}
+    <!-- The line above tells Django to be ready to listen for static files -->
+    <link rel="stylesheet" href="{% static 'test_app/css/style.css' %}" media="screen" title="no title"  charset="utf-8">
+  </head>
+  <body>
+    <div class="header">
+      <a href="/logout">Logout</a>
+      <h1>Hello, {{user_name}}!</h1>
+    </div>
+    <h3>Your Wish List:</h3>
+    <table width = 800 border = 1>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Added by</th>
+          <th>Date Added</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for item_added in user_added_items%}
+          <tr>
+            <td><a href="wish_items/{{item_added.id}}">{{item_added.name}}</a></td>
+            <td>{{item_added.created_by.first_name}}</td>
+            <td>{{item_added.created_at}}</td>
+            <td><a href="/remove_item/{{item_added.id}}">Remove from my WishList</a></td>
+          </tr>
+        {%endfor%}
+
+        {%for item in user_items%}
+          <tr>
+            <td><a href="wish_items/{{item.id}}">{{item.name}}</a></td>
+            <td>{{item.created_by.first_name}}</td>
+            <td>{{item.created_at}}</td>
+            <td><a href="/delete/{{item.id}}">delete</a></td>
+          </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+
+    <h3>Other Users' Wish List</h3>
+    <table width = 800 border = 1>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Added by</th>
+          <th>Date Added</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for item in other_users_items%}
+          <tr>
+            <td><a href="wish_items/{{item.id}}">{{item.name}}</a></td>
+            <td>{{item.created_by.first_name}}</td>
+            <td>{{item.created_at}}</td>
+            <td><a href="add_item/{{item.id}}">Add to my WishList</a></td>
+          </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+    <form class="" action="/wish_items/create" method="post">
+      {% csrf_token %}
+      <input type="submit" name="" value="Add Item">
+    </form>
+  </body>
+</html>
